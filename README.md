@@ -11,7 +11,7 @@ Waystone Mod Tracker is a lightweight ExileCore2 plugin for **Path of Exile 2** 
 
 ## 📥 Installation
 1. **Download & Extract:** Place this plugin inside:  
-
+ExileCore2\Plugins\ or use the plugin updater
 2. **Enable the plugin:**  
 - Open **ExileCore2**  
 - Go to **Settings** → Enable `Waystone Mod Tracker`
