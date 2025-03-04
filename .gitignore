@@ -1,0 +1,5 @@
+bin/
+obj/
+Errors.txt
+*.user
+*.suo
