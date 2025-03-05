@@ -31,7 +31,16 @@ namespace WaystoneModTracker
             var currentArea = GameController?.Area?.CurrentArea;
             if (currentArea == null) return;
 
-            bool isInsideMap = !(currentArea.IsTown || currentArea.IsHideout);
+            bool isTown = currentArea.IsTown;
+            bool isHideout = currentArea.IsHideout;
+
+            // Check if the user wants to hide the plugin in town or hideout
+            if ((Settings.HideInTown.Value && isTown) || (Settings.HideInHideout.Value && isHideout))
+            {
+                return; // Exit early to prevent drawing anything
+            }
+
+            bool isInsideMap = !(isTown || isHideout);
 
             if (isInsideMap)
             {
@@ -39,63 +48,42 @@ namespace WaystoneModTracker
             }
             else
             {
-                _mapStats.Clear(); // 🔹 Clear data in town/hideout but keep title
+                _mapStats.Clear(); // Clear data in town/hideout but keep title
             }
 
-            // 🔹 Display Title (Even in Town/Hideout)
+            // Display Title
             var displayText = $"Waystone Mods ({currentArea.Name}):\n";
 
             if (isInsideMap && _mapStats.Count > 0)
             {
-                // 🔹 Determine max width for column alignment
                 int maxModLength = _mapStats.Keys
                     .Select(mod => Regex.Replace(mod.Replace("Map", ""), "([a-z])([A-Z])", "$1 $2").Trim().Length)
                     .Max();
 
                 foreach (var mod in _mapStats)
                 {
-                    // 🔹 Format text properly
-                    string modName = mod.Key.Replace("Map", ""); // Remove "Map"
-                    modName = Regex.Replace(modName, "([a-z])([A-Z])", "$1 $2"); // Add spaces between words
+                    string modName = mod.Key.Replace("Map", "");
+                    modName = Regex.Replace(modName, "([a-z])([A-Z])", "$1 $2");
                     modName = modName.Replace("Pct", "%").Trim();
 
-                    string valueDisplay;
-                    if (mod.Value == 1 && (modName.Contains("No") || modName.Contains("Has"))) 
-                    {
-                        valueDisplay = "Yes";
-                    }
-                    else if (mod.Value == 0 && (modName.Contains("No") || modName.Contains("Has"))) 
-                    {
-                        valueDisplay = "No";
-                    }
-                    else if (modName.Contains("Chance") || modName.Contains("Ratio") || modName.Contains("%"))
-                    {
-                        valueDisplay = $"{mod.Value}%";
-                    }
-                    else
-                    {
-                        valueDisplay = $"{mod.Value}";
-                    }
+                    string valueDisplay = (mod.Value == 1 && (modName.Contains("No") || modName.Contains("Has"))) ? "Yes" :
+                                        (mod.Value == 0 && (modName.Contains("No") || modName.Contains("Has"))) ? "No" :
+                                        (modName.Contains("Chance") || modName.Contains("Ratio") || modName.Contains("%")) ? $"{mod.Value}%" :
+                                        $"{mod.Value}";
 
-                    // 🔹 Align values properly
                     displayText += $"{modName.PadRight(maxModLength + 5)} {valueDisplay,6}\n";
                 }
             }
 
-            // 🔹 Get screen position & size
-            var fontSize = 22; // Slightly larger font for readability
+            var fontSize = 22;
             var size = Graphics.MeasureText(displayText, fontSize);
             var scrRect = GameController.Window.GetWindowRectangle();
             var topLeft = new Vector2(scrRect.X + Settings.X, scrRect.Y + Settings.Y);
             var drawRect = new RectangleF(topLeft.X - 8, topLeft.Y - 8, size.X + 16, size.Y + 16);
 
-            // 🔹 Draw box background with padding
             Graphics.DrawBox(drawRect, Color.Black);
-
-            // 🔹 Draw text in white
             Graphics.DrawText(displayText, topLeft, Color.White, FontAlign.Left);
         }
-
 
         private void GetWaystoneMods()
         {

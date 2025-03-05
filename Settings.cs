@@ -87,6 +87,12 @@ namespace WaystoneModTracker
 
         [Menu("UI Position X")]
         public RangeNode<int> X { get; set; }
+        
+        [Menu("Hide in Town")]
+        public ToggleNode HideInTown { get; set; } = new ToggleNode(false);
+
+        [Menu("Hide in Hideout")]
+        public ToggleNode HideInHideout { get; set; } = new ToggleNode(false);
 
         [Menu("UI Position Y")]
         public RangeNode<int> Y { get; set; }
