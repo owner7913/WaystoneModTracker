@@ -26,6 +26,10 @@ ExileCore2\Plugins\ or use the plugin updater
 ## 🛠️ Contributing
 This is a **quick plugin**, and if you want to make changes or improvements, **please submit a pull request** on GitHub.
 
+## 🖼️ Preview
+![image](https://github.com/user-attachments/assets/d09eb796-1e2c-4278-bcf1-a3aabc72a813)
+![image](https://github.com/user-attachments/assets/d08d186d-3d61-4b55-8a4f-93684af7ffff)
+
 ## ⚠️ Disclaimer
 This plugin was built **quickly** for basic tracking functionality.  
 It is **not heavily optimized** and may require further improvements over time.
