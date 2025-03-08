@@ -85,6 +85,9 @@ namespace WaystoneModTracker
         [Menu("Enable Plugin")]
         public ToggleNode Enable { get; set; }
 
+        [Menu("Transparent Background")]
+        public ToggleNode TransparentBackground { get; set; } = new ToggleNode(false);
+
         [Menu("UI Position X")]
         public RangeNode<int> X { get; set; }
         

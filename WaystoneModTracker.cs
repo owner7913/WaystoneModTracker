@@ -81,8 +81,12 @@ namespace WaystoneModTracker
             var topLeft = new Vector2(scrRect.X + Settings.X, scrRect.Y + Settings.Y);
             var drawRect = new RectangleF(topLeft.X - 8, topLeft.Y - 8, size.X + 16, size.Y + 16);
 
-            Graphics.DrawBox(drawRect, Color.Black);
+            if (!Settings.TransparentBackground.Value)
+            {
+                Graphics.DrawBox(drawRect, Color.Black);
+            }
             Graphics.DrawText(displayText, topLeft, Color.White, FontAlign.Left);
+
         }
 
         private void GetWaystoneMods()
