@@ -9,34 +9,37 @@ namespace WaystoneModTracker
         public Settings()
         {
             Enable = new ToggleNode(true);
+            TransparentBackground = new ToggleNode(false);
+            HideInTown = new ToggleNode(false);
+            HideInHideout = new ToggleNode(false);
             X = new RangeNode<int>(150, -3000, 3000);
             Y = new RangeNode<int>(200, -3000, 3000);
 
-            // Initialize all map stats settings
-            MapMonstersDamagePct = new ToggleNode(false);
-            MapPlayerHasLevelXTemporalChains = new ToggleNode(false);
+            // Initialize all 85 map stats settings
             MapPackSizePct = new ToggleNode(false);
+            MapNumberOfMagicPacksPct = new ToggleNode(false);
             MapNumberOfRarePacksPct = new ToggleNode(false);
             MapItemDropQuantityPct = new ToggleNode(false);
             MapItemDropRarityPct = new ToggleNode(false);
             MapRarity = new ToggleNode(false);
+            MapBeyondRules = new ToggleNode(false);
             MapAreaPortalVariation = new ToggleNode(false);
-            MapNoStrongboxes = new ToggleNode(false);
-            MapNoShrines = new ToggleNode(false);
-            MapNoEssences = new ToggleNode(false);
-            MapNoCoreLeagues = new ToggleNode(false);
+            MapIsCorrupted = new ToggleNode(false);
             MapNumberOfExplicitMods = new ToggleNode(false);
             MapBossDroppedItemQuantityPct = new ToggleNode(false);
-            MapMagicPackSizePct = new ToggleNode(false);
+            MapContainsAdditionalBreaches = new ToggleNode(false);
             MapBreachMonsterQuantityPct = new ToggleNode(false);
             MapPlayerDamageTakenPctVsBreachMonsters = new ToggleNode(false);
             TotalNumberOfMapMods = new ToggleNode(false);
             MapItemDropChancePct = new ToggleNode(false);
+            MapMonsterTreePct = new ToggleNode(false);
             MapTier = new ToggleNode(false);
+            MapLevel = new ToggleNode(false);
             MapModEffectPct = new ToggleNode(false);
             MapEndgameFogDepth = new ToggleNode(false);
             MapAfflictionEncounterBossChancePct = new ToggleNode(false);
             MapBreachTimePassedPct = new ToggleNode(false);
+            MapRitualTributePct = new ToggleNode(false);
             MapRitualAdditionalRewardRerolls = new ToggleNode(false);
             MapRitualRewardsRerollCostPctFinal = new ToggleNode(false);
             MapRitualEncounterCountIsFour = new ToggleNode(false);
@@ -55,17 +58,18 @@ namespace WaystoneModTracker
             MapHiddenPlayersResistAllPct = new ToggleNode(false);
             MapAtlasX = new ToggleNode(false);
             MapAtlasY = new ToggleNode(false);
-            MapMonsterAdditionalEzomytePacks = new ToggleNode(false);
+            MapMonstersAdditionalStrengthRatioPct = new ToggleNode(false);
+            MapMonsterAdditionalFarricPacks = new ToggleNode(false);
             AtlasKeystonePrefixOrSuffixModEffectPctFinal = new ToggleNode(false);
             AtlasKeystoneRareOrUniqueMonstersHave10r2AdditionalMods = new ToggleNode(false);
             MapUniqueMonsterNumAdditionalModifiers = new ToggleNode(false);
             MapModSeed = new ToggleNode(false);
-            MapMonstersAdditionalStrengthRatioPctForArmour = new ToggleNode(false);
             MapModEffectPctPerMod = new ToggleNode(false);
             MapModEffectPctPerTowerAffectingArea = new ToggleNode(false);
             TableEffectPctWhenOpeningAMap = new ToggleNode(false);
             DoubleTableEffectChancePctWhenOpeningAMap = new ToggleNode(false);
             MapFinalBossMaxKeyOfAtlasSameTierAsCurrentMapDropChancePct = new ToggleNode(false);
+            MapNumberOfTowersAffectingArea = new ToggleNode(false);
             MapBiomeIndex = new ToggleNode(false);
             MapSimulacrumDifficulty = new ToggleNode(false);
             MapVoodooKingDifficulty = new ToggleNode(false);
@@ -78,8 +82,28 @@ namespace WaystoneModTracker
             MapTowerAugmentQuantityPct = new ToggleNode(false);
             MapExpeditionRareMonstersPct = new ToggleNode(false);
             MapBossAreaChanceToBeCorruptedPct = new ToggleNode(false);
+            MapPinnacleBossDifficulty = new ToggleNode(false);
             MapPinnacleBossItemDroppedRarityPctFinal = new ToggleNode(false);
-            MapPinnacleBossAdditionalUniqueDropChancePct = new ToggleNode(false);
+            MapPinnacleBossDropsXCorruptedRareTablets = new ToggleNode(false);
+            MapPinnacleBossSpecialGemDropChancePct = new ToggleNode(false);
+            MapRitualAdditionalDaemon = new ToggleNode(false);
+            MapRitualVoodooKingKeyChancePct = new ToggleNode(false);
+            MapRitualMagicMonstersPct = new ToggleNode(false);
+            MapRitualRareMonstersPct = new ToggleNode(false);
+            MapRitualOmenChancePct = new ToggleNode(false);
+            MapExpeditionLogbooksDropWith3Implicits = new ToggleNode(false);
+            MapWasDropWithDistilledEmotionsAppliedChancePct = new ToggleNode(false);
+            MapNonUniqueDeliriumMonsterSplinterAmountPct = new ToggleNode(false);
+            MapKillingRareMonstersPausesDeliriumMirrorTimerForXSeconds = new ToggleNode(false);
+            MapDeliriumDoodadsPctFinal = new ToggleNode(false);
+            MapUnique = new ToggleNode(false);
+            MapMonstersPctAllDamageToGainAsLightning = new ToggleNode(false);
+            MapMonstersPctAllDamageToGainAsChaos = new ToggleNode(false);
+            MapMonstersPctAllDamageToGainAsCold = new ToggleNode(false);
+            MapMonstersPctAllDamageToGainAsFire= new ToggleNode(false);
+            MapMonstersAdditionalElementalResistance= new ToggleNode(false);
+
+
         }
 
         [Menu("Enable Plugin")]
@@ -99,8 +123,12 @@ namespace WaystoneModTracker
 
         [Menu("UI Position Y")]
         public RangeNode<int> Y { get; set; }
-
         // 🔹 Map Mod Checkboxes
+        [Menu("Map Monsters Elemental Resistance")] public ToggleNode MapMonstersAdditionalElementalResistance { get; set; }
+        [Menu("Map Monsters Damage As Extra Fire %")] public ToggleNode MapMonstersPctAllDamageToGainAsFire { get; set; }
+        [Menu("Map Monsters Damage As Extra Cold %")] public ToggleNode MapMonstersPctAllDamageToGainAsCold { get; set; }
+        [Menu("Map Monsters Damage As Extra Chaos %")] public ToggleNode MapMonstersPctAllDamageToGainAsChaos { get; set; }
+        [Menu("Map Monsters Damage As Extra Lightning %")] public ToggleNode MapMonstersPctAllDamageToGainAsLightning { get; set; }
         [Menu("Map Monsters Damage %")] public ToggleNode MapMonstersDamagePct { get; set; }
         [Menu("Map Player Temporal Chains")] public ToggleNode MapPlayerHasLevelXTemporalChains { get; set; }
         [Menu("Map Pack Size %")] public ToggleNode MapPackSizePct { get; set; }
@@ -168,6 +196,30 @@ namespace WaystoneModTracker
         [Menu("Map Boss Area Chance to Be Corrupted %")] public ToggleNode MapBossAreaChanceToBeCorruptedPct { get; set; }
         [Menu("Map Pinnacle Boss Item Dropped Rarity %")] public ToggleNode MapPinnacleBossItemDroppedRarityPctFinal { get; set; }
         [Menu("Map Pinnacle Boss Additional Unique Drop Chance %")] public ToggleNode MapPinnacleBossAdditionalUniqueDropChancePct { get; set; }
+        [Menu("Map Map Unique")] public ToggleNode MapUnique { get; set; }
+        [Menu("Map Delerium Doodads % Final")] public ToggleNode MapDeliriumDoodadsPctFinal { get; set; }
+        [Menu("Map Killing Rare Monsters Pauses Delerium Mirrior Time For X Seconds")] public ToggleNode MapKillingRareMonstersPausesDeliriumMirrorTimerForXSeconds { get; set; }
+        [Menu("Map Non Unique Delerium Monster Splinter Amount %")] public ToggleNode MapNonUniqueDeliriumMonsterSplinterAmountPct { get; set; }
+        [Menu("Map Chance To Drop Maps With Destilled Amotion Applied Chance %")] public ToggleNode MapWasDropWithDistilledEmotionsAppliedChancePct { get; set; }
+        [Menu("Map Expidition Log Books Drop With 3 Implicits")] public ToggleNode MapExpeditionLogbooksDropWith3Implicits { get; set; }
+        [Menu("Map Ritual Omen Chance %")] public ToggleNode MapRitualOmenChancePct { get; set; }
+        [Menu("Map Ritual magic Monsters %")] public ToggleNode MapRitualMagicMonstersPct { get; set; }
+        [Menu("Map Vodoo King key Chance %")] public ToggleNode MapRitualVoodooKingKeyChancePct { get; set; }
+        [Menu("Map Ritual Additional Deamon")] public ToggleNode MapRitualAdditionalDaemon { get; set; }
+        [Menu("Map Pinnacle Boss Drops Special Gem Drop Chance %")] public ToggleNode MapPinnacleBossSpecialGemDropChancePct { get; set; }
+        [Menu("Map Pinnacle Boss Drops X Corrupted Rare Tablets")] public ToggleNode MapPinnacleBossDropsXCorruptedRareTablets { get; set; }
+        [Menu("Map Pinnacle Boss Difficulty")] public ToggleNode MapPinnacleBossDifficulty { get; set; }
+        [Menu("Map Number Of Towers Affecting Area")] public ToggleNode MapNumberOfTowersAffectingArea { get; set; }
+        [Menu("Map Monster Additional Farric Packs")] public ToggleNode MapMonsterAdditionalFarricPacks { get; set; }
+        [Menu("Map Monster Additional Strength ratio %")] public ToggleNode MapMonstersAdditionalStrengthRatioPct { get; set; }
+        [Menu("Map Ritual Tribute %")] public ToggleNode MapRitualTributePct { get; set; }
+        [Menu("Map Level")] public ToggleNode MapLevel { get; set; }
+        [Menu("Map Monster Tree %")] public ToggleNode MapMonsterTreePct { get; set; }
+        [Menu("Map Has Breach")] public ToggleNode MapContainsAdditionalBreaches { get; set; }
+        [Menu("Map Is Corrupted")] public ToggleNode MapIsCorrupted { get; set; }
+        [Menu("Map Beyond Rules")] public ToggleNode MapBeyondRules { get; set; }
+        [Menu("Map Number of Magic packs")] public ToggleNode MapNumberOfMagicPacksPct { get; set; }        
+        [Menu("Map Ritual Rare Monsters %")] public ToggleNode MapRitualRareMonstersPct { get; set; }        
 
     }
 }
