@@ -102,8 +102,7 @@ namespace WaystoneModTracker
             MapMonstersPctAllDamageToGainAsCold = new ToggleNode(false);
             MapMonstersPctAllDamageToGainAsFire= new ToggleNode(false);
             MapMonstersAdditionalElementalResistance= new ToggleNode(false);
-
-
+            MapExperinceGainPct= new ToggleNode(false);
         }
 
         [Menu("Enable Plugin")]
@@ -123,7 +122,8 @@ namespace WaystoneModTracker
 
         [Menu("UI Position Y")]
         public RangeNode<int> Y { get; set; }
-        // 🔹 Map Mod Checkboxes
+        // 🔹 Map Mod Checkboxes 
+        [Menu("Map Experince Gain %")] public ToggleNode MapExperinceGainPct { get; set; }
         [Menu("Map Monsters Elemental Resistance")] public ToggleNode MapMonstersAdditionalElementalResistance { get; set; }
         [Menu("Map Monsters Damage As Extra Fire %")] public ToggleNode MapMonstersPctAllDamageToGainAsFire { get; set; }
         [Menu("Map Monsters Damage As Extra Cold %")] public ToggleNode MapMonstersPctAllDamageToGainAsCold { get; set; }
